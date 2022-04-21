@@ -9,6 +9,7 @@ namespace CouponTrackerMobileApp1.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string PhotoPath { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string StoreName { get; set; }
         public string MfrName { get; set; }
