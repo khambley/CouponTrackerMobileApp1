@@ -11,6 +11,7 @@ namespace CouponTrackerMobileApp1.Models
         public int Id { get; set; }
         public string PhotoPath { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public bool IsUsed { get; set; }
         public string StoreName { get; set; }
         public string MfrName { get; set; }
         public string ProductName { get; set; }
