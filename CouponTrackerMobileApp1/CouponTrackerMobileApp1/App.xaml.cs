@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CouponTrackerMobileApp1.Pages;
 
 namespace CouponTrackerMobileApp1
 {
@@ -10,7 +11,7 @@ namespace CouponTrackerMobileApp1
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(Resolver.Resolve<CouponPage>());
         }
 
         protected override void OnStart()
