@@ -46,9 +46,11 @@ namespace CouponTrackerMobileApp1.Repositories
         public event EventHandler<CouponItem> OnItemAdded;
         public event EventHandler<CouponItem> OnItemUpdated;
 
-        public Task AddItem(CouponItem item)
+        public async Task AddItem(CouponItem item)
         {
-            return null; //Just so it can build
+            await CreateConnection();
+            await _connection.InsertAsync(item);
+            OnItemAdded?.Invoke(this, item); //notifies subscribers i.e. ObservableCollection or ListView
         }
 
         public async Task AddOrUpdate(CouponItem item)
@@ -63,14 +65,17 @@ namespace CouponTrackerMobileApp1.Repositories
             }
         }
 
-        public Task<List<CouponItem>> GetItems()
+        public async Task<List<CouponItem>> GetItems()
         {
-            throw new NotImplementedException();
+            await CreateConnection();
+            return await _connection.Table<CouponItem>().ToListAsync();
         }
 
-        public Task UpdateItem(CouponItem item)
+        public async Task UpdateItem(CouponItem item)
         {
-            throw new NotImplementedException();
+            await CreateConnection();
+            await _connection.UpdateAsync(item);
+            OnItemUpdated?.Invoke(this, item); //notifies subscribers i.e. ObservableCollection or ListView
         }
     }
 }
