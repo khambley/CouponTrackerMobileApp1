@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CouponTrackerMobileApp1.Pages.CouponItemAddEditPage"
+             Title="New Coupon Item">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Padding="14">
+        <Label Text="Category" />
+        <Entry />
+        <Label Text="Expiration Date" />
+        <DatePicker />
+        <Label Text="Starting Date" />
+        <DatePicker />
+        <Label Text="Store Name" />
+        <Entry />
+        <Label Text="Mfr Name" />
+        <Entry />
+        <Label Text="Product Name" />
+        <Entry />
+        <Label Text="Qty" /> <!--create NumericConverter-->
+        <Entry />
+        <Label Text="Amount" /> <!--create CurrencyConverter-->
+        <Entry />
+        <Label Text="Description" />
+        <Entry />
+        <StackLayout Orientation="Horizontal">
+            <Switch />
+            <Label Text="Used" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
