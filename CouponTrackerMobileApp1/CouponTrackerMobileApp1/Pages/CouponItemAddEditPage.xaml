@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" />
     </ContentPage.ToolbarItems>
-    <StackLayout Padding="14">
+    <StackLayout Padding="14" Spacing="10">
         <Label Text="Category" />
         <Entry />
         <Label Text="Expiration Date" />
