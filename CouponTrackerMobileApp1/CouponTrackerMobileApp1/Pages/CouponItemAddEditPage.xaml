@@ -4,30 +4,30 @@
              x:Class="CouponTrackerMobileApp1.Pages.CouponItemAddEditPage"
              Title="New Coupon Item">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" />
+        <ToolbarItem Text="Save" Command="{Binding Save}"/>
     </ContentPage.ToolbarItems>
     <StackLayout Padding="14" Spacing="10">
         <Label Text="Category" />
-        <Entry />
+        <Entry Text="{Binding Item.Category}"/>
         <Label Text="Expiration Date" />
-        <DatePicker />
+        <DatePicker Date="{Binding Item.ExpirationDate}"/>
         <Label Text="Starting Date" />
-        <DatePicker />
+        <DatePicker Date="{Binding Item.StartingDate}"/>
         <Label Text="Store Name" />
-        <Entry />
+        <Entry Text="{Binding Item.StoreName}"/>
         <Label Text="Mfr Name" />
-        <Entry />
+        <Entry Text="{Binding Item.MfrName}"/>
         <Label Text="Product Name" />
-        <Entry />
+        <Entry Text="{Binding Item.ProductName}"/>
         <Label Text="Qty" /> <!--create NumericConverter-->
-        <Entry />
+        <Entry Text="{Binding Item.ProductQuantity}" Keyboard="Numeric" />
         <Label Text="Amount" /> <!--create CurrencyConverter-->
-        <Entry />
+        <Entry Text="{Binding Item.Amount}"/>
         <Label Text="Description" />
-        <Entry />
+        <Entry Text="{Binding Description}" />
         <StackLayout Orientation="Horizontal">
-            <Switch />
-            <Label Text="Used" />
+            <Switch IsToggled="{Binding Item.IsUsed}" />
+            <Label Text="Used"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>
