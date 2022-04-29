@@ -38,7 +38,8 @@ namespace CouponTrackerMobileApp1.Repositories
                     DateAdded = DateTime.Now,
                     StartingDate = DateTime.Now,
                     Description = "save off any test product 12 oz or higher",
-                    Category = "Health"
+                    Category = "Health",
+                    IsUsed = true
                 });
             }
         }

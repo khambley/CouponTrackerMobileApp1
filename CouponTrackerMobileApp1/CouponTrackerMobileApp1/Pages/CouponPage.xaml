@@ -43,7 +43,7 @@
 
                            <Label Grid.Column="1"
                                   Grid.Row="1"
-                                  Text="{Binding Item.ExpirationDate}" />
+                                  Text="{Binding Item.ExpirationDate, StringFormat='{0:MM/dd/yy}'}" />
 
                            <Label Grid.Column="1"
                                   Grid.Row="1"
