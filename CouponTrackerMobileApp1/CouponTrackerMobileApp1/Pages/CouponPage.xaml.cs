@@ -19,6 +19,7 @@ namespace CouponTrackerMobileApp1.Pages
             viewModel.Navigation = Navigation;
             BindingContext = viewModel;
 
+            ItemsListView.ItemSelected += (s, e) => ItemsListView.SelectedItem = null;
         }
     }
 }

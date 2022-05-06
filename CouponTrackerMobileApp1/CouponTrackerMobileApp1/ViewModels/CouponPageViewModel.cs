@@ -18,6 +18,15 @@ namespace CouponTrackerMobileApp1.ViewModels
 
         public ObservableCollection<CouponItemViewModel> Items { get; set; }
 
+        public CouponItemViewModel SelectedItem {
+            get { return null; }
+            set
+            {
+                Device.BeginInvokeOnMainThread(async () => await NavigateToItem(value));
+                RaisePropertyChanged(nameof(SelectedItem));
+            }
+        }
+
         public CouponPageViewModel(CouponItemRepository repository)
         {
             // hook up events from the repository to know when data changes
@@ -29,7 +38,21 @@ namespace CouponTrackerMobileApp1.ViewModels
 
             Task.Run(async () => await LoadData());
         }
+        private async Task NavigateToItem(CouponItemViewModel item)
+        {
+            if(item == null)
+            {
+                return;
+            }
 
+            var itemView = Resolver.Resolve<CouponItemAddEditPage>();
+
+            var vm = itemView.BindingContext as CouponItemAddEditViewModel;
+
+            vm.Item = item.Item;
+
+            await Navigation.PushAsync(itemView);
+        }
         public ICommand AddItem => new Command(async () =>
         {
             var couponItem = Resolver.Resolve<CouponItemAddEditPage>();
