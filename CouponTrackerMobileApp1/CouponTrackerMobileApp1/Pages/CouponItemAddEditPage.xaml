@@ -12,7 +12,7 @@
         <Label Text="Expiration Date" />
         <DatePicker Date="{Binding Item.ExpirationDate}"/>
         <Label Text="Starting Date" />
-        <DatePicker Date="{Binding Item.StartingDate}"/>
+        <DatePicker Date="{Binding Item.StartingDate}" />
         <Label Text="Store Name" />
         <Entry Text="{Binding Item.StoreName}"/>
         <Label Text="Mfr Name" />

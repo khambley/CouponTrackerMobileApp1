@@ -17,7 +17,11 @@ namespace CouponTrackerMobileApp1.ViewModels
         public CouponItemAddEditViewModel(CouponItemRepository repository)
         {
             _repository = repository;
-            Item = new CouponItem() { ExpirationDate = DateTime.Now.AddDays(7) };
+            Item = new CouponItem()
+            {
+                ExpirationDate = DateTime.Now.AddDays(7),
+                StartingDate = DateTime.Now
+            };
         }
 
         public ICommand Save => new Command(async () =>

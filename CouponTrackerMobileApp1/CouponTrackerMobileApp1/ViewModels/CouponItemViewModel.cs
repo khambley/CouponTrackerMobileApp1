@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CouponTrackerMobileApp1.ViewModels
 {
@@ -13,6 +15,12 @@ namespace CouponTrackerMobileApp1.ViewModels
 
         public CouponItem Item { get; private set; }
 
-        public string StatusText => Item.IsUsed ? "Available" : "Used";
+        public string StatusText => Item.IsUsed ? "Used" : "Available";
+
+        public ICommand ToggleIsUsed => new Command((arg) =>
+        {
+            Item.IsUsed = !Item.IsUsed;
+            ItemStatusChanged?.Invoke(this, new EventArgs());
+        });
     }
 }

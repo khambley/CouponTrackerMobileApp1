@@ -21,15 +21,24 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Text="Toggle filter" />
+        <Button Text="{Binding FilterText, StringFormat='Filter: {0}'}"
+                       Command="{Binding ToggleFilter}" />
+
         <ListView x:Name="ItemsListView"
                   Grid.Row="1"
                   RowHeight="70"
                   ItemsSource="{Binding Items}"
-                  SelectedItem="{Binding SelectedItem}">
+                  SelectedItem="{Binding SelectedItem}"
+                  IsPullToRefreshEnabled="True">
            <ListView.ItemTemplate>
                <DataTemplate>
                    <ViewCell>
+
+                       <ViewCell.ContextActions>
+                           <MenuItem Text="{Binding StatusText}"
+                                     Command="{Binding ToggleIsUsed}" />
+                       </ViewCell.ContextActions>
+
                        <Grid Padding="15,10">
                            <Grid.ColumnDefinitions>
                                <ColumnDefinition Width="10" />

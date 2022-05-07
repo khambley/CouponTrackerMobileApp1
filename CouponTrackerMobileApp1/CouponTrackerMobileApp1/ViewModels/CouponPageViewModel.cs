@@ -27,6 +27,14 @@ namespace CouponTrackerMobileApp1.ViewModels
             }
         }
 
+        public string FilterText => ShowAll ? "All" : "Available";
+
+        public ICommand ToggleFilter => new Command(async () =>
+        {
+            ShowAll = !ShowAll;
+            await LoadData();
+        });
+
         public CouponPageViewModel(CouponItemRepository repository)
         {
             // hook up events from the repository to know when data changes
@@ -64,6 +72,11 @@ namespace CouponTrackerMobileApp1.ViewModels
             // get items from repository
             var items = await _repository.GetItems();
 
+            if (!ShowAll)
+            {
+                items = items.Where(x => x.IsUsed == false).ToList();
+            }
+
             // **best practice** - wrap each coupon item in a CouponItemViewModel
             // (adds properties specific to view that's why not using CouponItem.cs)
             var couponItemViewModels = items.Select(i => CreateCouponItemViewModel(i));
@@ -81,7 +94,15 @@ namespace CouponTrackerMobileApp1.ViewModels
 
         private void ItemStatusChanged(object sender, EventArgs e)
         {
-
+            if(sender is CouponItemViewModel item)
+            {
+                if(!ShowAll && item.Item.IsUsed)
+                {
+                    Items.Remove(item);
+                }
+                Task.Run(async () => await _repository.UpdateItem(item.Item));
+            }
         }
+        public bool ShowAll { get; set; }
     }
 }
