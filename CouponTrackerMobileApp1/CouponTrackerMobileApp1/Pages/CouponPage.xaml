@@ -21,8 +21,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Text="{Binding FilterText, StringFormat='Filter: {0}'}"
-                       Command="{Binding ToggleFilter}" />
+        <Button Style="{StaticResource FilterButton}"
+                Text="{Binding FilterText, StringFormat='Filter: {0}'}"
+                       Command="{Binding ToggleFilter}"
+                BackgroundColor="{Binding ShowAll, Converter={StaticResource statusColorConverter}}"
+                TextColor="Black">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding ShowAll}" Value="True">
+                    <Setter Property="TextColor" Value="White" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
 
         <ListView x:Name="ItemsListView"
                   Grid.Row="1"
@@ -48,9 +57,10 @@
                            <BoxView Grid.RowSpan="2"
                                     BackgroundColor="{Binding Item.IsUsed, Converter={StaticResource statusColorConverter}}" />
 
-                           <Label Grid.Column="1"
+                           <Label Style="{StaticResource LabelProductName}"
+                                  Grid.Column="1"
                                   Text="{Binding Item.ProductName}"
-                                  FontSize="Large" />
+                                   />
 
                            <Label Grid.Column="1"
                                   Grid.Row="1"
@@ -61,7 +71,8 @@
                                   HorizontalTextAlignment="End"
                                   Text="Used"
                                   IsVisible="{Binding Item.IsUsed}"
-                                  FontSize="Micro" />
+                                  FontSize="Micro" 
+                                  TextColor="{StaticResource UsedColor}" />
 
                        </Grid>
                    </ViewCell>
