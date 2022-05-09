@@ -44,6 +44,8 @@ namespace CouponTrackerMobileApp1.ViewModels
 
             _repository = repository;
 
+            ShowAll = true;
+
             Task.Run(async () => await LoadData());
         }
         private async Task NavigateToItem(CouponItemViewModel item)
@@ -71,7 +73,7 @@ namespace CouponTrackerMobileApp1.ViewModels
         {
             // get items from repository
             var items = await _repository.GetItems();
-
+            
             if (!ShowAll)
             {
                 items = items.Where(x => x.IsUsed == false).ToList();

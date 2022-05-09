@@ -6,6 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding Save}"/>
     </ContentPage.ToolbarItems>
+    <ScrollView>
     <StackLayout Padding="14" Spacing="10">
         <Label Text="Category" />
         <Entry Text="{Binding Item.Category}"/>
@@ -30,4 +31,5 @@
             <Label Text="Used"/>
         </StackLayout>
     </StackLayout>
+    </ScrollView>
 </ContentPage>
