@@ -7,29 +7,56 @@
         <ToolbarItem Text="Save" Command="{Binding Save}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
-    <StackLayout Padding="14" Spacing="10">
-        <Label Text="Category" />
-        <Entry Text="{Binding Item.Category}"/>
-        <Label Text="Expiration Date" />
-        <DatePicker Date="{Binding Item.ExpirationDate}"/>
-        <Label Text="Starting Date" />
-        <DatePicker Date="{Binding Item.StartingDate}" />
-        <Label Text="Store Name" />
-        <Entry Text="{Binding Item.StoreName}"/>
-        <Label Text="Mfr Name" />
-        <Entry Text="{Binding Item.MfrName}"/>
-        <Label Text="Product Name" />
-        <Entry Text="{Binding Item.ProductName}"/>
-        <Label Text="Qty" /> <!--create NumericConverter-->
-        <Entry Text="{Binding Item.ProductQuantity}" Keyboard="Numeric" />
-        <Label Text="Amount" /> <!--create CurrencyConverter-->
-        <Entry Text="{Binding Item.Amount}"/>
-        <Label Text="Description" />
-        <Entry Text="{Binding Description}" />
-        <StackLayout Orientation="Horizontal">
-            <Switch IsToggled="{Binding Item.IsUsed}" />
-            <Label Text="Used"/>
-        </StackLayout>
-    </StackLayout>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Add or Edit Coupon Below">
+                    <EntryCell Text="{Binding Item.Category}"
+                               Label="Category"
+                               
+                               />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,10,5,0">
+                            <Label Text="Expiration Date" />
+                            <DatePicker Date="{Binding Item.ExpirationDate}"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,10,5,0">
+                            <Label Text="Starting Date"
+                                   Padding="0,0,14,0"/>
+                            <DatePicker Date="{Binding Item.StartingDate}" />
+                        </StackLayout>
+                    </ViewCell>
+                    <EntryCell Text="{Binding Item.StoreName}"
+                               Label="Store Name" />
+                    <EntryCell Text="{Binding Item.MfrName}"
+                               Label="Mfr Name" />
+                    <EntryCell Text="{Binding Item.ProductName}"
+                               Label="Product Name" />
+                    <EntryCell Text="{Binding Item.ProductQuantity}"
+                               Label="Qty"
+                               Keyboard="Numeric" />
+                    <!--create CurrencyConverter-->
+                    <EntryCell Text="{Binding Item.Amount}" 
+                               Label="Amount"
+                               Keyboard="Default" />
+                    <EntryCell Text="{Binding Description}"
+                               Label="Description"
+                               />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="20,10,0,10">
+                            <Label Text="Used" HorizontalTextAlignment="Start"/>
+                            <Switch IsToggled="{Binding Item.IsUsed}" HorizontalOptions="End"/>
+                            
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        
+   
     </ScrollView>
 </ContentPage>

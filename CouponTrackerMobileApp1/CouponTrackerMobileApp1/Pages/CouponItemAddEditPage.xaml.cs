@@ -19,5 +19,9 @@ namespace CouponTrackerMobileApp1.Pages
             viewModel.Navigation = Navigation;
             BindingContext = viewModel;
         }
+
+        void SwitchCell_OnChanged(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+        }
     }
 }

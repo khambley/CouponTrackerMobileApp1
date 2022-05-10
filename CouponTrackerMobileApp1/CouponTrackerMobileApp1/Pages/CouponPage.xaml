@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:CouponTrackerMobileApp1"
              xmlns:converters="clr-namespace:CouponTrackerMobileApp1.Converters"
              x:Class="CouponTrackerMobileApp1.Pages.CouponPage"
-             Title="Coupon Tracker">
+             Title="Coupon Tracker"
+             BackgroundColor="White">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -32,49 +33,60 @@
                 </DataTrigger>
             </Button.Triggers>
         </Button>
-
         <ListView x:Name="ItemsListView"
                   Grid.Row="1"
-                  RowHeight="70"
+                  RowHeight="80"
                   ItemsSource="{Binding Items}"
                   SelectedItem="{Binding SelectedItem}"
                   IsPullToRefreshEnabled="True">
            <ListView.ItemTemplate>
                <DataTemplate>
                    <ViewCell>
+                       <StackLayout HorizontalOptions="StartAndExpand"
+                                    Orientation="Horizontal"
+                                    Padding="0,5,5,5"
+                                    >
 
-                       <ViewCell.ContextActions>
-                           <MenuItem Text="{Binding StatusText}"
-                                     Command="{Binding ToggleIsUsed}" />
-                       </ViewCell.ContextActions>
+                           <BoxView HorizontalOptions="StartAndExpand"
+                                        BackgroundColor="{Binding Item.IsUsed, Converter={StaticResource statusColorConverter}}"
+                                        HeightRequest="50"
+                                        WidthRequest="100" />
 
-                       <Grid Padding="15,10">
-                           <Grid.ColumnDefinitions>
-                               <ColumnDefinition Width="10" />
-                               <ColumnDefinition Width="*" />
-                           </Grid.ColumnDefinitions>
+                           <StackLayout HorizontalOptions="StartAndExpand"
+                                        Orientation="Vertical">
+                               
+                               <Label HorizontalOptions="StartAndExpand"
+                                      FontSize="20"
+                                      FontAttributes="Bold"
+                                      Text="{Binding Item.MfrName}" />
 
-                           <BoxView Grid.RowSpan="2"
-                                    BackgroundColor="{Binding Item.IsUsed, Converter={StaticResource statusColorConverter}}" />
+                               <Label HorizontalOptions="StartAndExpand"
+                                      FontSize="12"
+                                      FontAttributes="Bold"
+                                      Text="{Binding Item.ProductName}" />
 
-                           <Label Style="{StaticResource LabelProductName}"
-                                  Grid.Column="1"
-                                  Text="{Binding Item.ProductName}"
-                                   />
+                               <StackLayout Orientation="Horizontal"
+                                            HorizontalOptions="StartAndExpand">
+                                   <Label Text="{Binding AmountString}" />
+                                   <Label Text=" OFF" />
+                                   
+                                   <!--<BoxView HorizontalOptions="EndAndExpand" WidthRequest="50" />-->
 
-                           <Label Grid.Column="1"
-                                  Grid.Row="1"
-                                  Text="{Binding Item.ExpirationDate, StringFormat='{0:MM/dd/yy}'}" />
+                                   <!--<Label Text="Exp. Date"
+                                          FontSize="12"
+                                          HorizontalOptions="Start"
+                                          Padding="0,5,0,0" />-->
 
-                           <Label Grid.Column="1"
-                                  Grid.Row="1"
-                                  HorizontalTextAlignment="End"
-                                  Text="Used"
-                                  IsVisible="{Binding Item.IsUsed}"
-                                  FontSize="Micro" 
-                                  TextColor="{StaticResource UsedColor}" />
-
-                       </Grid>
+                                   <!--<Label HorizontalOptions="EndAndExpand"
+                                          HorizontalTextAlignment="End"
+                                          FontSize="20"
+                                          TextColor="Blue"
+                                          Text="{Binding Item.ExpirationDate, StringFormat='{0:MM/dd/yy}'}" />-->
+                               </StackLayout>
+                           </StackLayout>
+                           <Label Text="Exp. Date" FontSize="Micro" Padding="30,0,0,0" />
+                           <Label Text="{Binding Item.ExpirationDate, StringFormat='{0:MM/dd/yy}'}" />
+                       </StackLayout>
                    </ViewCell>
                </DataTemplate>
            </ListView.ItemTemplate>         

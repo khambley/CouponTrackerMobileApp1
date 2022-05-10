@@ -34,7 +34,7 @@ namespace CouponTrackerMobileApp1.Repositories
                     StoreName = "Test Store",
                     ProductName = "Test Product",
                     ProductQty = 1,
-                    Amount = 3.00M,
+                    Amount = 1.25m,
                     DateAdded = DateTime.Now,
                     StartingDate = DateTime.Now,
                     Description = "save off any test product 12 oz or higher",
@@ -69,7 +69,8 @@ namespace CouponTrackerMobileApp1.Repositories
         public async Task<List<CouponItem>> GetItems()
         {
             await CreateConnection();
-            return await _connection.Table<CouponItem>().ToListAsync();
+            var coupons = _connection.Table<CouponItem>().OrderBy(x => x.ExpirationDate);
+            return await coupons.ToListAsync();
         }
 
         public async Task UpdateItem(CouponItem item)
